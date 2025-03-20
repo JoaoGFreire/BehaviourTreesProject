@@ -5,10 +5,11 @@ using UnityEngine;
 
 namespace NodeCanvas.Tasks.Actions {
 
-	public class RandomColorAT : ActionTask {
+	public class ChangeColorAT : ActionTask {
 
 		public BBParameter<Color> currentColor;
 		public MeshRenderer meshRenderer;
+
 		//Use for initialization. This is called only once in the lifetime of the task.
 		//Return null if init was successfull. Return an error string otherwise
 		protected override string OnInit() {
@@ -19,28 +20,9 @@ namespace NodeCanvas.Tasks.Actions {
 		//Call EndAction() to mark the action as finished, either in success or failure.
 		//EndAction can be called from anywhere.
 		protected override void OnExecute() {
-			int i = Random.Range(1, 5);
-			if(i == 1)
-			{
-				currentColor.value = Color.black;
-				meshRenderer.material.color = currentColor.value;
-			}
-            if (i == 2)
-            {
-                currentColor.value = Color.red;
-                meshRenderer.material.color = currentColor.value;
-            }
-            if (i == 3)
-            {
-                currentColor.value = Color.green;
-                meshRenderer.material.color = currentColor.value;
-            }
-            if (i == 4)
-            {
-                currentColor.value = Color.blue;
-                meshRenderer.material.color = currentColor.value;
-            }
-            EndAction(true);
+			meshRenderer.material.color = Color.white;
+			currentColor.value = Color.white;
+			EndAction(true);
 		}
 
 		//Called once per frame while the action is active.

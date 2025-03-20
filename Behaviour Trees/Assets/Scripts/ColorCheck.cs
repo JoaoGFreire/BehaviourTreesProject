@@ -8,6 +8,7 @@ namespace NodeCanvas.Tasks.Conditions {
 	public class ColorCheck : ConditionTask {
 
 		public BBParameter<Color> color;
+		public Color colorToCheck;
 
 		//Use for initialization. This is called only once in the lifetime of the task.
 		//Return null if init was successfull. Return an error string otherwise
@@ -29,7 +30,7 @@ namespace NodeCanvas.Tasks.Conditions {
 		//Return whether the condition is success or failure.
 		protected override bool OnCheck() {
 			
-			return color.value == Color.white;
+			return color.value == colorToCheck;
 		}
 	}
 }
