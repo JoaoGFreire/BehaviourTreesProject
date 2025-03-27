@@ -10,6 +10,7 @@ namespace NodeCanvas.Tasks.Conditions {
 
         public BBParameter<float> rangeRadius;
         public BBParameter<Transform> target;
+		bool found = false;
 
 		public LayerMask playerLayer;
         //Use for initialization. This is called only once in the lifetime of the task.
@@ -35,15 +36,14 @@ namespace NodeCanvas.Tasks.Conditions {
             foreach (Collider player in hitPlayers)
             {
                 target.value = player.transform;
+				found = true;
             }
-			if (hitPlayers == null)
+			if (found)
 			{
-				return false;
+				Debug.Log(target);
+				return true;
 			}
-			else
-			{
-                return true;
-            }
+			else { return false; }
             //return true;
 		}
 	}
