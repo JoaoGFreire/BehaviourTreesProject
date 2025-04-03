@@ -6,7 +6,7 @@ using UnityEngine.AI;
 
 namespace NodeCanvas.Tasks.Actions {
 
-	public class WanderAT : ActionTask {
+	public class Wander2AT : ActionTask {
 
 		public NavMeshAgent myNavMeshAgent;
 		public BBParameter<float> wanderRadius;
@@ -34,11 +34,12 @@ namespace NodeCanvas.Tasks.Actions {
 		{
 			Vector3 finalPosition = Vector3.zero;
 
-			Vector3 randomPoint = Random.insideUnitSphere * wanderRadius;
+			Vector3 randomPoint = Random.insideUnitCircle * wanderRadius;
 			NavMeshHit hit;
-			if(NavMesh.SamplePosition(randomPoint,out hit, wanderRadius, 1) && (Vector3.Distance(randomPoint,agent.transform.position) <= 2))
+			if(NavMesh.SamplePosition(randomPoint,out hit, wanderRadius, 1))
 			{
 				finalPosition = randomPoint;
+				Debug.Log(finalPosition);
 			}
 			//randomPoint = finalPosition;
 
@@ -48,7 +49,8 @@ namespace NodeCanvas.Tasks.Actions {
 
 		//Called once per frame while the action is active.
 		protected override void OnUpdate() {
-			timeSinceLastWanderPosition += 1 * Time.deltaTime;
+            Debug.Log(wanderTarget);
+            timeSinceLastWanderPosition += 1 * Time.deltaTime;
 			if(timeSinceLastWanderPosition >= wanderMaxDuration)
 			{
 
