@@ -10,12 +10,15 @@ namespace NodeCanvas.Tasks.Conditions {
 
         public BBParameter<float> rangeRadius;
         public BBParameter<Transform> target;
+		public BBParameter<GameObject> particles;
+		public BBParameter<bool> Found;
 		bool found = false;
 
 		public LayerMask playerLayer;
         //Use for initialization. This is called only once in the lifetime of the task.
         //Return null if init was successfull. Return an error string otherwise
         protected override string OnInit(){
+			Found.value = false;
 			return null;
 		}
 
@@ -36,14 +39,17 @@ namespace NodeCanvas.Tasks.Conditions {
             foreach (Collider player in hitPlayers)
             {
                 target.value = player.transform;
-				found = true;
+				Found.value = true;
             }
-			if (found)
+			if (Found.value && Vector3.Distance(agent.transform.position,target.value.position) <= rangeRadius.value)
 			{
 				Debug.Log(target);
 				return true;
 			}
-			else { return false; }
+			else {
+                particles.value.SetActive(false);
+                return false; 
+			}
             //return true;
 		}
 	}
