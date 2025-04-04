@@ -35,19 +35,20 @@ namespace NodeCanvas.Tasks.Conditions {
 		//Called once per frame while the condition is active.
 		//Return whether the condition is success or failure.
 		protected override bool OnCheck() {
+			//checks for the CEO Player cube within its search radius 
             Collider[] hitPlayers = Physics.OverlapSphere(agent.transform.position, rangeRadius.value,playerLayer);
             foreach (Collider player in hitPlayers)
             {
-                target.value = player.transform;
+                target.value = player.transform; //once found sets the target to be the player that it just found
 				Found.value = true;
             }
 			if (Found.value && Vector3.Distance(agent.transform.position,target.value.position) <= rangeRadius.value)
 			{
 				Debug.Log(target);
-				return true;
+				return true; //if the player is found and within range , then return true
 			}
 			else {
-                particles.value.SetActive(false);
+                particles.value.SetActive(false); //else remove particle effects and return false
                 return false; 
 			}
             //return true;

@@ -18,7 +18,7 @@ namespace NodeCanvas.Tasks.Actions {
 		//Call EndAction() to mark the action as finished, either in success or failure.
 		//EndAction can be called from anywhere.
 		protected override void OnExecute() {
-			particles.value.SetActive(true);
+			particles.value.SetActive(true); // once the player is found turn on particle effect.
 			EndAction(true);
 		}
 

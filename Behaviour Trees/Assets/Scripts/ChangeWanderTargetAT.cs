@@ -14,6 +14,7 @@ namespace NodeCanvas.Tasks.Actions {
 
 		public NavMeshAgent navagent;
 		public BBParameter<float> RadiusWander;
+		
 		public BBParameter<Transform> target;
 
 
@@ -25,13 +26,13 @@ namespace NodeCanvas.Tasks.Actions {
 		//Call EndAction() to mark the action as finished, either in success or failure.
 		//EndAction can be called from anywhere.
 		protected override void OnExecute() {
-            if (target.value == null || target.value == null)
-            {
-                Debug.LogWarning("Target is null, retrying next frame...");
-				StartCoroutine(delayedAction());
-                return;
-            }
-            target.value.position = RandomPointOnMesh(RadiusWander.value);
+    //        if (target.value == null || target.value == null)
+    //        {
+    //            Debug.LogWarning("Target is null, retrying next frame...");
+				//StartCoroutine(delayedAction());
+    //            return;
+    //        }
+            target.value.position = RandomPointOnMesh(RadiusWander.value); //sets target position to be the random position that will be generated
 			
 			EndAction(true);
 		}
@@ -39,18 +40,19 @@ namespace NodeCanvas.Tasks.Actions {
 		{
 			Vector3 targetPoint = Vector3.zero;
 
-            Vector3 randomPoint = Random.insideUnitCircle * wanderRadius;
+            Vector3 randomPoint = Random.insideUnitSphere * wanderRadius; //sets random point to be a random point inside the navMesh
             NavMeshHit hit;
             if (NavMesh.SamplePosition(randomPoint, out hit, wanderRadius, 1))
             {
                 if(randomPoint != null)
 				{
-					targetPoint = randomPoint;
+					//Debug.Log(randomPoint);
+					targetPoint = randomPoint; //if the randompoint exists, sets the target to be the random point
 				}
-                Debug.Log(targetPoint);
+                //Debug.Log(targetPoint);
             }
 
-			return targetPoint;
+			return targetPoint; //returns target
         }
 		private IEnumerator delayedAction()
 		{

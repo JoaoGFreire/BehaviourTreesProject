@@ -20,10 +20,10 @@ namespace NodeCanvas.Tasks.Actions {
 		//This is called once each time the task is enabled.
 		//Call EndAction() to mark the action as finished, either in success or failure.
 		//EndAction can be called from anywhere.
-		protected override void OnExecute() {
-            timeElapsed.value += 1 * Time.deltaTime;
-            Vector3 moveDirection = (WanderTarget.value.position - agent.transform.position);
-			agent.transform.position += moveDirection.normalized * speed.value * Time.deltaTime;
+		protected override void OnExecute() {                                           //this is in execute and not update so that it can be interrupted by the player detection
+            timeElapsed.value += 1 * Time.deltaTime; //increases time elapsed
+            Vector3 moveDirection = (WanderTarget.value.position - agent.transform.position); //sets the movement direction to be the direction towards the wander target
+			agent.transform.position += moveDirection.normalized * speed.value * Time.deltaTime; //move the HR enemy towards the wonder target
 			EndAction(true);
 		}
 
