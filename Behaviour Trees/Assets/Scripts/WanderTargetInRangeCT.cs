@@ -36,6 +36,7 @@ namespace NodeCanvas.Tasks.Conditions {
 				timeElapsed.value = 0;
 				return true;
             }
+			
             return false;
 		}
 	}
