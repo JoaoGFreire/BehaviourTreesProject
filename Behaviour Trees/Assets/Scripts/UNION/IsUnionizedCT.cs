@@ -1,16 +1,14 @@
 using NodeCanvas.Framework;
 using ParadoxNotion.Design;
 using System;
-using UnityEngine;
 
 
 namespace NodeCanvas.Tasks.Conditions {
 
-	public class EmployeeInRangeCT : ConditionTask {
+	public class IsUnionizedCT : ConditionTask {
 
-		public BBParameter<Transform> currentEmployee;
-		public BBParameter<Boolean> reached;
-		public float detectionRadius;
+		public BBParameter<Boolean> IsUnionized;
+
 		//Use for initialization. This is called only once in the lifetime of the task.
 		//Return null if init was successfull. Return an error string otherwise
 		protected override string OnInit(){
@@ -30,19 +28,7 @@ namespace NodeCanvas.Tasks.Conditions {
 		//Called once per frame while the condition is active.
 		//Return whether the condition is success or failure.
 		protected override bool OnCheck() {
-
-			
-			float distance = Vector3.Distance(agent.transform.position, currentEmployee.value.position);
-			if(distance < detectionRadius) 
-			{
-				reached.value = true;
-				return true;
-			}
-			else
-			{
-				return false;
-			}
-
+			return IsUnionized.value;
 		}
 	}
 }

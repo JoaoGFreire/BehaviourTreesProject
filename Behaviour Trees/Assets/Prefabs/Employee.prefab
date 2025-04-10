@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 1668760136785949313}
   - component: {fileID: 938900621616246158}
   - component: {fileID: 6677396187275882522}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Cylinder
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -121,8 +121,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ExploitTime: 20
+  Employee: {fileID: 3467131628463238387}
   defaultMaterial: {fileID: 2100000, guid: 11dbdd20a0a4d344b9b01cdbee62ee96, type: 2}
   exploitedMaterial: {fileID: 2100000, guid: d8f916259d0c05e448e86d38706330d9, type: 2}
+  UnionizedMaterial: {fileID: 2100000, guid: bfda0f8e3c96f5e48aed9162f576307a, type: 2}
+  employeerender: {fileID: 4682579168414779208}
 --- !u!1 &3467131628463238387
 GameObject:
   m_ObjectHideFlags: 0
@@ -135,7 +138,7 @@ GameObject:
   - component: {fileID: 8031944876078104422}
   - component: {fileID: 4682579168414779208}
   - component: {fileID: 7510445672690608290}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Employee
   m_TagString: Untagged
   m_Icon: {fileID: 0}

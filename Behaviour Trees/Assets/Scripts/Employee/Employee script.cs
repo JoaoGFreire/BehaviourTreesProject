@@ -7,11 +7,17 @@ public class Employeescript : MonoBehaviour
     public float ExploitTime = 0;
     private float timer = 0;
     private bool inside = false;
+    private bool exploited;
+    private bool unionized;
 
+    public GameObject Employee;
     public Material defaultMaterial;
     public Material exploitedMaterial;
+    public Material UnionizedMaterial;
 
     private Renderer triggerRender;
+    public Renderer employeerender;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -34,6 +40,7 @@ public class Employeescript : MonoBehaviour
 
             if(timer >= ExploitTime) 
             {
+                exploited = true;
                 triggerRender.material = exploitedMaterial;
             }
         }
@@ -49,9 +56,22 @@ public class Employeescript : MonoBehaviour
         }
     }
 
+    public void Unionize()
+    {
+        employeerender.material = UnionizedMaterial;
+    }
+
     // Update is called once per frame
     void Update()
     {
-        
+        if (exploited)
+        {
+            gameObject.tag = "Exploited";
+            triggerRender.material = exploitedMaterial;
+        }
+        if (unionized)
+        {
+            gameObject.tag = "Unionized";
+        }
     }
 }
