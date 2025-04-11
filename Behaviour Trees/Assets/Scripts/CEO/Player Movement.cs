@@ -11,10 +11,11 @@ public class PlayerMovement : MonoBehaviour
 
     private float inputH;
     private float inputV;
+    private float originalSpeed;
     
     void Start()
     {
-        
+        originalSpeed = speed;
     }
 
     // Update is called once per frame
@@ -33,5 +34,13 @@ public class PlayerMovement : MonoBehaviour
             Quaternion toRotate = Quaternion.LookRotation(direction, Vector3.up);
             transform.rotation = Quaternion.RotateTowards(transform.rotation, toRotate, rotateSpeed * Time.deltaTime);
         }
+    }
+    public void Freeze()
+    {
+        speed = 0f;
+    }
+    public void Unfreeze()
+    {
+        speed = originalSpeed; 
     }
 }

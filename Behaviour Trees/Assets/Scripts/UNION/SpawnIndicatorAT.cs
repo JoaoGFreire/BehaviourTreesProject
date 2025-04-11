@@ -1,18 +1,21 @@
 using NodeCanvas.Framework;
 using ParadoxNotion.Design;
-using System.Runtime.CompilerServices;
 using UnityEngine;
 
 
 namespace NodeCanvas.Tasks.Actions {
 
-	public class FreezeAT : ActionTask {
+	public class SpawnIndicatorAT : ActionTask {
 
 		//Use for initialization. This is called only once in the lifetime of the task.
 		//Return null if init was successfull. Return an error string otherwise
-		public BBParameter<Transform> player;
 
-		private Vector3 frozenPosition;
+		public BBParameter<Transform> currentEmployee;
+		public BBParameter<GameObject> IndicatorPrefab;
+		public BBParameter<GameObject> currentIndicator;
+
+		public LayerMask Indicator;
+
 		protected override string OnInit() {
 			return null;
 		}
@@ -21,16 +24,16 @@ namespace NodeCanvas.Tasks.Actions {
 		//Call EndAction() to mark the action as finished, either in success or failure.
 		//EndAction can be called from anywhere.
 		protected override void OnExecute() {
-			frozenPosition = player.value.position;
-			//EndAction(true);
+			
+			GameObject.Instantiate(IndicatorPrefab.value,currentEmployee.value.position + new Vector3(0,2,0),Quaternion.identity);
+			
+			EndAction(true);
 		}
 
 		//Called once per frame while the action is active.
 		protected override void OnUpdate() {
-			player.value.position = frozenPosition;	
+			
 		}
-
-		
 
 		//Called when the task is disabled.
 		protected override void OnStop() {
